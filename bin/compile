@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+set -e
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+
+BIN_PATH="$BUILD_DIR/bin"
+TMP_PATH="$BUILD_DIR/tmp"
+LIB_PATH="$BUILD_DIR/vendor/wkhtmltox/lib"
+mkdir -p $CACHE_DIR $BIN_PATH $TMP_PATH $LIB_PATH
+                 
+
+if [ "$STACK" == "cedar-14" ]; then
+  UBUNTU_VERSION="trusty"
+elif [ "$STACK" == "heroku-16" ]; then
+  UBUNTU_VERSION="xenial"
+elif [ "$STACK" == "heroku-18" ]; then
+  UBUNTU_VERSION="bionic"
+else
+  UBUNTU_VERSION="focal"
+fi
+
+WKHTMLTOPDF_URL=WKHTMLTOPDF_URL="https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.${UBUNTU_VERSION}_amd64.deb"
+
+WKHTMLTOPDF_PKG="$CACHE_DIR/wkhtmltopdf.deb"
+WKHTMLTOPDF_PATH="$TMP_PATH/wkhtmltopdf"
+WKHTMLTOPDF_BINARIES="$WKHTMLTOPDF_PATH/usr/local/bin"
+WKHTMLTOPDF_LIBS="$WKHTMLTOPDF_PATH/usr/local/lib"
+
+BIN_DIR=$(cd $(dirname $0); pwd)
+FONTS_DIR=$(cd "$BIN_DIR/../fonts"; pwd)
+
+if [ -f $WKHTMLTOPDF_PKG ]; then
+  echo "-----> Using wkhtmltopdf Debian package from cache"
+else
+  echo "-----> Downloading wkhtmltopdf Debian package from ${WKHTMLTOPDF_URL}"
+  curl -L $WKHTMLTOPDF_URL -o $WKHTMLTOPDF_PKG
+fi
+
+echo "-----> Unpacking wkhtmltopdf Debian package"
+dpkg -x $WKHTMLTOPDF_PKG $WKHTMLTOPDF_PATH
+
+echo "-----> Setting permissions for wkhtmltopdf binaries"
+chmod +x $WKHTMLTOPDF_BINARIES/*
+
+echo "-----> Moving wkhtmltopdf binaries to the right place"
+mv $WKHTMLTOPDF_BINARIES/* $BIN_PATH/
+
+echo "-----> Moving wkhtmltopdf libs to the right place"
+mv $WKHTMLTOPDF_LIBS/* $LIB_PATH/
+
+echo "-----> Cleaning up"
+rm -rf $WKHTMLTOPDF_PATH
