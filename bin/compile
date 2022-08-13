@@ -32,10 +32,8 @@ WKHTMLTOPDF_LIBS="$WKHTMLTOPDF_PATH/usr/local/lib"
 BIN_DIR=$(cd $(dirname $0); pwd)
 FONTS_DIR=$(cd "$BIN_DIR/../fonts"; pwd)
 
-
 echo "-----> Downloading wkhtmltopdf Debian package from ${WKHTMLTOPDF_URL}"
 curl -L $WKHTMLTOPDF_URL -o $WKHTMLTOPDF_PKG
-
 
 echo "-----> Unpacking wkhtmltopdf Debian package"
 dpkg -x $WKHTMLTOPDF_PKG $WKHTMLTOPDF_PATH
