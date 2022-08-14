@@ -32,19 +32,19 @@ WKHTMLTOPDF_LIBS="$WKHTMLTOPDF_PATH/usr/local/lib"
 BIN_DIR=$(cd $(dirname $0); pwd)
 FONTS_DIR=$(cd "$BIN_DIR/../fonts"; pwd)
 
-echo "-----> Downloading wkhtmltopdf Debian package from ${WKHTMLTOPDF_URL}"
+echo "-----> Downloading wkhtmltopdf & wkhtmltoimage Debian package from ${WKHTMLTOPDF_URL}"
 curl -L $WKHTMLTOPDF_URL -o $WKHTMLTOPDF_PKG
 
-echo "-----> Unpacking wkhtmltopdf Debian package"
+echo "-----> Unpacking wkhtmltopdf & wkhtmltoimage Debian package"
 dpkg -x $WKHTMLTOPDF_PKG $WKHTMLTOPDF_PATH
 
-echo "-----> Setting permissions for wkhtmltopdf binaries"
+echo "-----> Setting permissions for wkhtmltopdf & wkhtmltoimage binaries"
 chmod +x $WKHTMLTOPDF_BINARIES/*
 
-echo "-----> Moving wkhtmltopdf binaries to the right place"
+echo "-----> Moving wkhtmltopdf & wkhtmltoimage binaries to ${BIN_PATH}"
 mv $WKHTMLTOPDF_BINARIES/* $BIN_PATH/
 
-echo "-----> Moving wkhtmltopdf libs to the right place"
+echo "-----> Moving wkhtmltopdf & wkhtmltoimage libs to ${LIB_PATH}"
 mv $WKHTMLTOPDF_LIBS/* $LIB_PATH/
 
 echo "-----> Cleaning up"
