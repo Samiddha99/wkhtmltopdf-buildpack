@@ -30,6 +30,7 @@ WKHTMLTOPDF_BINARIES="$WKHTMLTOPDF_PATH/usr/local/bin"
 WKHTMLTOPDF_LIBS="$WKHTMLTOPDF_PATH/usr/local/lib"
 
 BIN_DIR=$(cd $(dirname $0); pwd)
+FONTS_DIR=$(cd "$BIN_DIR/../fonts"; pwd)
 
 echo "-----> Downloading wkhtmltopdf Debian package from ${WKHTMLTOPDF_URL}"
 curl -L $WKHTMLTOPDF_URL -o $WKHTMLTOPDF_PKG
@@ -48,3 +49,9 @@ mv $WKHTMLTOPDF_LIBS/* $LIB_PATH/
 
 echo "-----> Cleaning up"
 rm -rf $WKHTMLTOPDF_PATH
+
+echo "-----> Installing fonts"
+mkdir -p $1/.fonts
+ls $FONTS_DIR
+cp $FONTS_DIR/* $1/.fonts/
+fc-cache -f $1/.fonts
