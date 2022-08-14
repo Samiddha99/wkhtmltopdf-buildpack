@@ -1,16 +1,7 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir>
 
-set -e
-
-BUILD_DIR=$1
-CACHE_DIR=$2
-
-BIN_PATH="$BUILD_DIR/bin"
-TMP_PATH="$BUILD_DIR/tmp"
-LIB_PATH="$BUILD_DIR/vendor/wkhtmltox/lib"
-mkdir -p $CACHE_DIR $BIN_PATH $TMP_PATH $LIB_PATH
-                 
+set -e           
 
 if [ "$STACK" == "cedar-14" ]; then
   UBUNTU_VERSION="trusty"
@@ -23,6 +14,15 @@ else
 fi
 
 WKHTMLTOPDF_URL="https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.${UBUNTU_VERSION}_amd64.deb"
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+
+BIN_PATH="$BUILD_DIR/bin/wkhtmltox"
+TMP_PATH="$BUILD_DIR/tmp"
+LIB_PATH="$BUILD_DIR/vendor/wkhtmltox/lib"
+
+mkdir -p $CACHE_DIR $BIN_PATH $TMP_PATH $LIB_PATH
 
 WKHTMLTOPDF_PKG="$CACHE_DIR/wkhtmltopdf.deb"
 WKHTMLTOPDF_PATH="$TMP_PATH/wkhtmltopdf"
