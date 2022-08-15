@@ -18,19 +18,21 @@ WKHTMLTOPDF_URL="http://kr.archive.ubuntu.com/ubuntu/pool/universe/w/wkhtmltopdf
 BUILD_DIR=$1
 CACHE_DIR=$2
 
-BIN_PATH="$BUILD_DIR/buildpacks/wkhtmltox/bin"
-LIB_PATH="$BUILD_DIR/buildpacks/wkhtmltox/lib"
-TMP_PATH="$BUILD_DIR/tmp"
+#BIN_PATH="$BUILD_DIR/buildpacks/wkhtmltox/bin"
+#LIB_PATH="$BUILD_DIR/buildpacks/wkhtmltox/lib"
+#TMP_PATH="$BUILD_DIR/tmp"
 
-mkdir -p $CACHE_DIR $BIN_PATH $TMP_PATH $LIB_PATH
+#mkdir -p $CACHE_DIR $BIN_PATH $TMP_PATH $LIB_PATH
 
 WKHTMLTOPDF_PKG="$CACHE_DIR/wkhtmltopdf.deb"
-WKHTMLTOPDF_PATH="$TMP_PATH/wkhtmltopdf"
-WKHTMLTOPDF_BINARIES="$WKHTMLTOPDF_PATH/usr/bin"
-WKHTMLTOPDF_LIBS="$WKHTMLTOPDF_PATH/usr/lib"
+WKHTMLTOPDF_PATH="$BUILD_DIR/packages/wkhtmltopdf"
+WKHTMLTOPDF_BINARIES="$BUILD_DIR/packages/wkhtmltopdf/user/bin"
 
-BIN_DIR=$(cd $(dirname $0); pwd)
-FONTS_DIR=$(cd "$BIN_DIR/../fonts"; pwd)
+#WKHTMLTOPDF_BINARIES="$WKHTMLTOPDF_PATH/usr/bin"
+#WKHTMLTOPDF_LIBS="$WKHTMLTOPDF_PATH/usr/lib"
+
+#BIN_DIR=$(cd $(dirname $0); pwd)
+#FONTS_DIR=$(cd "$BIN_DIR/../fonts"; pwd)
 
 echo "-----> Downloading wkhtmltopdf & wkhtmltoimage Debian package from ${WKHTMLTOPDF_URL}"
 curl -L $WKHTMLTOPDF_URL -o $WKHTMLTOPDF_PKG
@@ -41,14 +43,14 @@ dpkg -x $WKHTMLTOPDF_PKG $WKHTMLTOPDF_PATH
 echo "-----> Setting permissions for wkhtmltopdf & wkhtmltoimage binaries"
 chmod +x $WKHTMLTOPDF_BINARIES/*
 
-echo "-----> Moving wkhtmltopdf & wkhtmltoimage binaries to ${BIN_PATH}"
-mv $WKHTMLTOPDF_BINARIES/* $BIN_PATH/
+#echo "-----> Moving wkhtmltopdf & wkhtmltoimage binaries to ${BIN_PATH}"
+#mv $WKHTMLTOPDF_BINARIES/* $BIN_PATH/
 
-echo "-----> Moving wkhtmltopdf & wkhtmltoimage libs to ${LIB_PATH}"
-mv $WKHTMLTOPDF_LIBS/* $LIB_PATH/
+#echo "-----> Moving wkhtmltopdf & wkhtmltoimage libs to ${LIB_PATH}"
+#mv $WKHTMLTOPDF_LIBS/* $LIB_PATH/
 
-echo "-----> Cleaning up"
-rm -rf $WKHTMLTOPDF_PATH
+#echo "-----> Cleaning up"
+#rm -rf $WKHTMLTOPDF_PATH
 
 #echo "-----> Installing fonts"
 #mkdir -p $1/.fonts
