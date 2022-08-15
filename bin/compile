@@ -38,10 +38,10 @@ dpkg -x $WKHTMLTOPDF_PKG $WKHTMLTOPDF_PATH
 echo "-----> Setting execute permissions for wkhtmltopdf & wkhtmltoimage binaries"
 chmod +x $WKHTMLTOPDF_BINARIES/*
 
-echo "-----> set env var WKHTMLTOPDF_BINARY_PATH=`${WKHTMLTOPDF_BINARY_PATH}`"
+echo "-----> set env var WKHTMLTOPDF_BINARY_PATH='${WKHTMLTOPDF_BINARY_PATH}'"
 export WKHTMLTOPDF_BINARY_PATH=WKHTMLTOPDF_BINARY_PATH
 
-echo "-----> set env var WKHTMLTOIMAGE_BINARY_PATH=`${WKHTMLTOIMAGE_BINARY_PATH}`"
+echo "-----> set env var WKHTMLTOIMAGE_BINARY_PATH='${WKHTMLTOIMAGE_BINARY_PATH}'"
 export WKHTMLTOIMAGE_BINARY_PATH=WKHTMLTOIMAGE_BINARY_PATH
 
 #echo "-----> Installing fonts"
