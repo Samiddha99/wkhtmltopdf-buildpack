@@ -45,7 +45,7 @@ dpkg -x $WKHTMLTOPDF_PKG $WKHTMLTOPDF_PATH
 echo "-----> Setting permissions for wkhtmltopdf & wkhtmltoimage binaries"
 chmod +x $WKHTMLTOPDF_BINARIES/*
 
-sudo apt-get install libfontconfig1
+apt-get install libfontconfig1
 
 #echo "-----> Moving wkhtmltopdf & wkhtmltoimage binaries to ${BIN_PATH}"
 #mv $WKHTMLTOPDF_BINARIES/* $BIN_PATH/
