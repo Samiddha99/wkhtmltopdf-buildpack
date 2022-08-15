@@ -28,6 +28,8 @@ WKHTMLTOPDF_PKG="$CACHE_DIR/wkhtmltopdf.deb"
 WKHTMLTOPDF_PATH="$BUILD_DIR/packages/wkhtmltopdf"
 WKHTMLTOPDF_BINARIES="$BUILD_DIR/packages/wkhtmltopdf/user/bin"
 
+mkdir -p $WKHTMLTOPDF_PATH
+
 #WKHTMLTOPDF_BINARIES="$WKHTMLTOPDF_PATH/usr/bin"
 #WKHTMLTOPDF_LIBS="$WKHTMLTOPDF_PATH/usr/lib"
 
@@ -37,7 +39,7 @@ WKHTMLTOPDF_BINARIES="$BUILD_DIR/packages/wkhtmltopdf/user/bin"
 echo "-----> Downloading wkhtmltopdf & wkhtmltoimage Debian package from ${WKHTMLTOPDF_URL}"
 curl -L $WKHTMLTOPDF_URL -o $WKHTMLTOPDF_PKG
 
-echo "-----> Unpacking wkhtmltopdf & wkhtmltoimage Debian package"
+echo "-----> Unpacking wkhtmltopdf & wkhtmltoimage Debian package to ${WKHTMLTOPDF_PATH}"
 dpkg -x $WKHTMLTOPDF_PKG $WKHTMLTOPDF_PATH
 
 echo "-----> Setting permissions for wkhtmltopdf & wkhtmltoimage binaries"
