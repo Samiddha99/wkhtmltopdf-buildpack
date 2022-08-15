@@ -18,21 +18,13 @@ WKHTMLTOPDF_URL="https://github.com/wkhtmltopdf/packaging/releases/download/0.12
 BUILD_DIR=$1
 CACHE_DIR=$2
 
-#BIN_PATH="$BUILD_DIR/buildpacks/wkhtmltox/bin"
-#LIB_PATH="$BUILD_DIR/buildpacks/wkhtmltox/lib"
-#TMP_PATH="$BUILD_DIR/tmp"
-
-#mkdir -p $CACHE_DIR $BIN_PATH $TMP_PATH $LIB_PATH
-
 WKHTMLTOPDF_PKG="$CACHE_DIR/wkhtmltopdf.deb"
 WKHTMLTOPDF_PATH="$BUILD_DIR/packages/wkhtmltopdf"
 WKHTMLTOPDF_BINARIES="$WKHTMLTOPDF_PATH/usr/local/bin"
-WKHTMLTOPDF_LIBS="$WKHTMLTOPDF_PATH/usr/local/lib"
+WKHTMLTOPDF_BINARY_LOCATION="/app/packages/wkhtmltopdf/usr/local/bin/wkhtmltopdf"
+WKHTMLTOIMAGE_BINARY_LOCATION="/app/packages/wkhtmltopdf/usr/local/bin/wkhtmltoimage"
 
 mkdir -p $WKHTMLTOPDF_PATH
-
-#WKHTMLTOPDF_BINARIES="$WKHTMLTOPDF_PATH/usr/bin"
-#WKHTMLTOPDF_LIBS="$WKHTMLTOPDF_PATH/usr/lib"
 
 #BIN_DIR=$(cd $(dirname $0); pwd)
 #FONTS_DIR=$(cd "$BIN_DIR/../fonts"; pwd)
@@ -43,17 +35,14 @@ curl -L $WKHTMLTOPDF_URL -o $WKHTMLTOPDF_PKG
 echo "-----> Unpacking wkhtmltopdf & wkhtmltoimage Debian package to ${WKHTMLTOPDF_PATH}"
 dpkg -x $WKHTMLTOPDF_PKG $WKHTMLTOPDF_PATH
 
-echo "-----> Setting permissions for wkhtmltopdf & wkhtmltoimage binaries"
+echo "-----> Setting execute permissions for wkhtmltopdf & wkhtmltoimage binaries"
 chmod +x $WKHTMLTOPDF_BINARIES/*
 
-#echo "-----> Moving wkhtmltopdf & wkhtmltoimage binaries to ${BIN_PATH}"
-#mv $WKHTMLTOPDF_BINARIES/* $BIN_PATH/
+echo "-----> set env var WKHTMLTOPDF_BINARY_LOCATION to ${WKHTMLTOPDF_BINARY_LOCATION}"
+export WKHTMLTOPDF_BINARY_LOCATION=WKHTMLTOPDF_BINARY_LOCATION
 
-#echo "-----> Moving wkhtmltopdf & wkhtmltoimage libs to ${LIB_PATH}"
-#mv $WKHTMLTOPDF_LIBS/* $LIB_PATH/
-
-#echo "-----> Cleaning up"
-#rm -rf $WKHTMLTOPDF_PATH
+echo "-----> set env var WKHTMLTOIMAGE_BINARY_LOCATION to ${WKHTMLTOIMAGE_BINARY_LOCATION}"
+export WKHTMLTOIMAGE_BINARY_LOCATION=WKHTMLTOIMAGE_BINARY_LOCATION
 
 #echo "-----> Installing fonts"
 #mkdir -p $1/.fonts
