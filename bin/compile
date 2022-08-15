@@ -39,7 +39,7 @@ echo "-----> Setting execute permissions for wkhtmltopdf & wkhtmltoimage binarie
 chmod +x $WKHTMLTOPDF_BINARIES/*
 
 echo "-----> set env var WKHTMLTOPDF_BINARY_PATH='${WKHTMLTOPDF_BINARY_PATH}'"
-export WKHTMLTOPDF_BINARY_PATH="/app/packages/wkhtmltopdf/usr/local/bin/wkhtmltoimage"
+export WKHTMLTOPDF_BINARY_PATH=${WKHTMLTOPDF_BINARY_PATH}
 
 echo "-----> set env var WKHTMLTOIMAGE_BINARY_PATH='${WKHTMLTOIMAGE_BINARY_PATH}'"
 export WKHTMLTOIMAGE_BINARY_PATH=WKHTMLTOIMAGE_BINARY_PATH
