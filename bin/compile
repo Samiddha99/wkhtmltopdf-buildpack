@@ -13,7 +13,7 @@ else
   UBUNTU_VERSION="focal"
 fi
 
-WKHTMLTOPDF_URL="http://kr.archive.ubuntu.com/ubuntu/pool/universe/w/wkhtmltopdf/wkhtmltopdf_0.12.5-1build1_amd64.deb"
+WKHTMLTOPDF_URL="https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.${UBUNTU_VERSION}_amd64.deb"
 
 BUILD_DIR=$1
 CACHE_DIR=$2
@@ -26,7 +26,8 @@ CACHE_DIR=$2
 
 WKHTMLTOPDF_PKG="$CACHE_DIR/wkhtmltopdf.deb"
 WKHTMLTOPDF_PATH="$BUILD_DIR/packages/wkhtmltopdf"
-WKHTMLTOPDF_BINARIES="$WKHTMLTOPDF_PATH/usr/bin"
+WKHTMLTOPDF_BINARIES="$WKHTMLTOPDF_PATH/usr/local/bin"
+WKHTMLTOPDF_LIBS="$WKHTMLTOPDF_PATH/usr/local/lib"
 
 mkdir -p $WKHTMLTOPDF_PATH
 
@@ -44,8 +45,6 @@ dpkg -x $WKHTMLTOPDF_PKG $WKHTMLTOPDF_PATH
 
 echo "-----> Setting permissions for wkhtmltopdf & wkhtmltoimage binaries"
 chmod +x $WKHTMLTOPDF_BINARIES/*
-
-apt-get install libfontconfig1
 
 #echo "-----> Moving wkhtmltopdf & wkhtmltoimage binaries to ${BIN_PATH}"
 #mv $WKHTMLTOPDF_BINARIES/* $BIN_PATH/
