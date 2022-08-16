@@ -2,8 +2,6 @@
 
 set -e           
 
-bin/compile BUILD_DIR CACHE_DIR 
-
 if [ "$STACK" == "cedar-14" ]; then
   UBUNTU_VERSION="trusty"
 elif [ "$STACK" == "heroku-16" ]; then
