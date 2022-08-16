@@ -30,7 +30,7 @@ WKHTMLTOPDF_BINARIES="$WKHTMLTOPDF_PATH/usr/local/bin"
 mkdir -p $WKHTMLTOPDF_PATH
 
 WKHTMLTOPDF_BINARY_PATH_VAR="/app/packages/wkhtmltopdf/usr/local/bin/wkhtmltopdf"
-WKHTMLTOIMAGE_BINARY_PATH="/app/packages/wkhtmltopdf/usr/local/bin/wkhtmltoimage"
+WKHTMLTOIMAGE_BINARY_PATH_VAR="/app/packages/wkhtmltopdf/usr/local/bin/wkhtmltoimage"
 
 #BIN_DIR=$(cd $(dirname $0); pwd)
 #FONTS_DIR=$(cd "$BIN_DIR/../fonts"; pwd)
@@ -47,7 +47,7 @@ chmod +x $WKHTMLTOPDF_BINARIES/*
 echo "-----> set env var WKHTMLTOPDF_BINARY_PATH='${WKHTMLTOPDF_BINARY_PATH_VAR}'"
 export WKHTMLTOPDF_BINARY=${WKHTMLTOPDF_BINARY_PATH_VAR}
 
-echo "-----> set env var WKHTMLTOIMAGE_BINARY_PATH='${WKHTMLTOIMAGE_BINARY_PATH}'"
+echo "-----> set env var WKHTMLTOIMAGE_BINARY_PATH='${WKHTMLTOIMAGE_BINARY_PATH_VAR}'"
 export WKHTMLTOIMAGE_BINARY='val':$WKHTMLTOIMAGE_BINARY
 
 #echo "-----> Installing fonts"
