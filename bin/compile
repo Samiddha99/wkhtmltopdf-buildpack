@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-bin/compile BUILD_DIR CACHE_DIR ENV_DIR
-
 set -e           
+
+bin/compile BUILD_DIR CACHE_DIR 
 
 if [ "$STACK" == "cedar-14" ]; then
   UBUNTU_VERSION="trusty"
