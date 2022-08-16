@@ -18,6 +18,10 @@ WKHTMLTOPDF_URL="https://github.com/wkhtmltopdf/packaging/releases/download/0.12
 
 BUILD_DIR=$1
 CACHE_DIR=$2
+ENV_DIR=$3
+
+# Export Path variables, for use in sub-scripts.
+export BUILD_DIR CACHE_DIR ENV_DIR
 
 WKHTMLTOPDF_PKG="$CACHE_DIR/wkhtmltopdf.deb"
 WKHTMLTOPDF_PATH="$BUILD_DIR/packages/wkhtmltopdf"
@@ -44,7 +48,7 @@ echo "-----> set env var WKHTMLTOPDF_BINARY_PATH='${WKHTMLTOPDF_BINARY_PATH_VAR}
 export WKHTMLTOPDF_BINARY=${WKHTMLTOPDF_BINARY_PATH_VAR}
 
 echo "-----> set env var WKHTMLTOIMAGE_BINARY_PATH='${WKHTMLTOIMAGE_BINARY_PATH}'"
-export WKHTMLTOIMAGE_BINARY='val'
+export WKHTMLTOIMAGE_BINARY='val':$WKHTMLTOIMAGE_BINARY
 
 #echo "-----> Installing fonts"
 #mkdir -p $1/.fonts
