@@ -51,7 +51,7 @@ profile_directory_script="$profile_directory/wkhtmltopdf_buildpack.sh"
 mkdir -p $profile_directory
 
 echo "-----> setting config var WKHTMLTOPDF_BINARY_PATH='${WKHTMLTOPDF_BINARY_PATH_VAR}'"
-echo 'export WKHTMLTOPDF_BINARY="${WKHTMLTOPDF_BINARY_PATH_VAR}"' > $profile_directory
+echo 'export WKHTMLTOPDF_BINARY="${WKHTMLTOPDF_BINARY_PATH_VAR}"' > $profile_directory_script
 
 echo "-----> setting config var WKHTMLTOIMAGE_BINARY_PATH='${WKHTMLTOIMAGE_BINARY_PATH_VAR}'"
 
