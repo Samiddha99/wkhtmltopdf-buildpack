@@ -32,9 +32,6 @@ mkdir -p $WKHTMLTOPDF_PATH
 WKHTMLTOPDF_BINARY_PATH_VAR="/app/packages/wkhtmltopdf/usr/local/bin/wkhtmltopdf"
 WKHTMLTOIMAGE_BINARY_PATH_VAR="/app/packages/wkhtmltopdf/usr/local/bin/wkhtmltoimage"
 
-#BIN_DIR=$(cd $(dirname $0); pwd)
-#FONTS_DIR=$(cd "$BIN_DIR/../fonts"; pwd)
-
 echo "-----> Downloading wkhtmltopdf & wkhtmltoimage Debian package from ${WKHTMLTOPDF_URL}"
 curl -L $WKHTMLTOPDF_URL -o $WKHTMLTOPDF_PKG
 
@@ -51,16 +48,14 @@ profile_directory_script="$profile_directory/wkhtmltopdf_buildpack.sh"
 mkdir -p $profile_directory
 
 echo "-----> setting config var WKHTMLTOPDF_BINARY_PATH='${WKHTMLTOPDF_BINARY_PATH_VAR}'"
-echo "export WKHTMLTOPDF_BINARY=${WKHTMLTOPDF_BINARY_PATH_VAR}" > $profile_directory_script
+echo "export WKHTMLTOPDF_BINARY_PATH=${WKHTMLTOPDF_BINARY_PATH_VAR}" > $profile_directory_script
 
 echo "-----> setting config var WKHTMLTOIMAGE_BINARY_PATH='${WKHTMLTOIMAGE_BINARY_PATH_VAR}'"
-echo "export WKHTMLTOIMAGE_BINARY=${WKHTMLTOIMAGE_BINARY_PATH_VAR}" >> $profile_directory_script
+echo "export WKHTMLTOIMAGE_BINARY_PATH=${WKHTMLTOIMAGE_BINARY_PATH_VAR}" >> $profile_directory_script
 
-# cat << EOF > $profile_directory_script
-# export WKHTMLTOPDF_BINARY="${WKHTMLTOPDF_BINARY_PATH_VAR}"
-# export WKHTMLTOIMAGE_BINARY="${WKHTMLTOIMAGE_BINARY_PATH_VAR}"
-# EOF
 
+#BIN_DIR=$(cd $(dirname $0); pwd)
+#FONTS_DIR=$(cd "$BIN_DIR/../fonts"; pwd)
 
 #echo "-----> Installing fonts"
 #mkdir -p $1/.fonts
