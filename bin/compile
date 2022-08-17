@@ -45,8 +45,8 @@ echo "-----> Setting execute permissions for wkhtmltopdf & wkhtmltoimage binarie
 chmod +x $WKHTMLTOPDF_BINARIES/*
 
 
-profile_directory="$BUILD_DIR/.profile.d"
-profile_directory_script="$profile_directory/wkhtmltopdf_buildpack.sh"
+profile_directory=$BUILD_DIR/.profile.d
+profile_directory_script=$profile_directory/wkhtmltopdf_buildpack.sh
 
 mkdir -p $profile_directory
 
