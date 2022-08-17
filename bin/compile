@@ -45,14 +45,13 @@ echo "-----> Setting execute permissions for wkhtmltopdf & wkhtmltoimage binarie
 chmod +x $WKHTMLTOPDF_BINARIES/*
 
 
-output_dir=.profile.d
-output_path=$output_dir/wkhtmltopdf_buildpack.sh
+profile_directory="$BUILD_DIR/.profile.d/wkhtmltopdf_buildpack.sh"
 
-mkdir -p $1/$output_dir
+mkdir -p $profile_directory
 
 echo "-----> set env var WKHTMLTOPDF_BINARY_PATH='${WKHTMLTOPDF_BINARY_PATH_VAR}'"
-cat << EOF > $1/$output_path
-export WKHTMLTOPDF_BINARY=\${WKHTMLTOPDF_BINARY:-$WKHTMLTOPDF_BINARY_PATH_VAR}
+cat << EOF > $profile_directory
+export WKHTMLTOPDF_BINARY="${WKHTMLTOPDF_BINARY_PATH_VAR}"
 EOF
 
 
