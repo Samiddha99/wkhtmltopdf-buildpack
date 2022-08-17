@@ -52,10 +52,10 @@ mkdir -p $profile_directory
 
 
 echo "-----> setting config var WKHTMLTOPDF_BINARY_PATH='${WKHTMLTOPDF_BINARY_PATH_VAR}'"
-echo '-----> export WKHTMLTOPDF_BINARY="${WKHTMLTOPDF_BINARY_PATH_VAR}"' > profile_directory_script
+echo 'export WKHTMLTOPDF_BINARY="${WKHTMLTOPDF_BINARY_PATH_VAR}"' > profile_directory_script
 
 echo "-----> setting config var WKHTMLTOIMAGE_BINARY_PATH='${WKHTMLTOIMAGE_BINARY_PATH_VAR}'"
-echo '-----> export WKHTMLTOIMAGE_BINARY="${WKHTMLTOIMAGE_BINARY_PATH_VAR}"' >> profile_directory_script
+echo 'export WKHTMLTOIMAGE_BINARY="${WKHTMLTOIMAGE_BINARY_PATH_VAR}"' >> profile_directory_script
 
 # cat << EOF > $profile_directory_script
 # export WKHTMLTOPDF_BINARY="${WKHTMLTOPDF_BINARY_PATH_VAR}"
